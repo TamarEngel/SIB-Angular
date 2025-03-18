@@ -1,0 +1,32 @@
+<h2 class="user-title">users</h2>
+<mat-card class="user-card">
+    <mat-accordion>
+        @for (user of users; track user.id) {
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{user.userId}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="user-description">
+                    {{ user.name }}
+                    {{ user.email }}
+                    {{user.isDeleted}}
+                    {{ user.createdAt }}
+                </p>
+            </mat-expansion-panel>
+            <button mat-fab (click)="deleteUser(user.userId)">Delete user</button>
+        }
+    </mat-accordion>
+
+
+
+    <!-- <div class="add-course-button">
+        <button mat-fab  (click)="toggleAdd()">Add Course</button>
+    </div>
+    @if(this.add){
+        <app-add-challenge></app-add-challenge>
+        <app-add-challenge [challenge]="challenge" (save)="addChallenge($event)"></app-add-challenge>
+    } -->
+
+</mat-card>

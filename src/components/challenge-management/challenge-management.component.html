@@ -1,0 +1,37 @@
+<h2 class="challenge-title">challenges</h2>
+<mat-card class="challeng-card">
+    <mat-accordion>
+        @for (challeng of challengs; track challeng) {
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ challeng.title }}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="challeng-description">
+                {{ challeng.description }}
+                {{challeng.startDate}}
+                {{ challeng.endDate }}
+                {{challeng.createdAt}}
+                {{ challeng.countCreations }}
+                {{challeng.isDeleted}}
+                {{ challeng.endDate }}
+                {{challeng.createdAt}}
+            </p>
+        </mat-expansion-panel>
+        }
+    </mat-accordion>
+
+    <div class="add-challenge-button">
+        <button mat-button color="warn" (click)="openAddCourseDialog()">add challenge</button>
+    </div>
+
+    <!-- <div class="add-course-button">
+        <button mat-fab  (click)="toggleAdd()">Add Course</button>
+    </div>
+    @if(this.add){
+        <app-add-challenge></app-add-challenge>
+        <app-add-challenge [challenge]="challenge" (save)="addChallenge($event)"></app-add-challenge>
+    } -->
+
+</mat-card>

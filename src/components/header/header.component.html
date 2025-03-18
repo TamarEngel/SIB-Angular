@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="toolbar">
+  <div class="toolbar-content">
+    <!-- @if(getFromLocalStorageStorage('token')) {
+    <div class="profile-circle">
+      {{getName()}}
+      {{ userName }}
+    </div>
+    <span class="spacer"></span>
+    } -->
+
+    <nav>
+      <a mat-button routerLink="/" routerLinkActive="active1">Home</a>
+
+      @if(!getFromLocalStorageStorage('token')) {
+      <button mat-button routerLink="login" routerLinkActive="active1">Login</button>
+      <!-- <button mat-button routerLink="register" routerLinkActive="active1">Sign-Up</button> -->
+      }
+      @else{
+        <a mat-button routerLink="/callenges" routerLinkActive="active1">Callenges</a>        
+        <a mat-button routerLink="/userManagement" routerLinkActive="active1">User Management</a>
+        <a mat-button (click)="logOut()">Log out</a>
+      }
+      
+      
+    </nav>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>
+
+
+
+
+
+ 
