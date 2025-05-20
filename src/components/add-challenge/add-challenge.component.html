@@ -1,28 +1,67 @@
-<h2 mat-dialog-title> Add Challenge </h2>
-<mat-dialog-content style="border-radius: 0; overflow: hidden; padding: 20px;">
-  <form (ngSubmit)="onSubmit()" style="display:flex; flex-direction: column; gap: 20px;">
+<div class="challenge-dialog">
+  <h2 mat-dialog-title class="dialog-title">
+    <mat-icon class="title-icon">emoji_events</mat-icon>
+    Create New Challenge
+  </h2>
+  
+  <mat-dialog-content class="dialog-content">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="challenge-form">
+      <div class="form-section">
+        <h3 class="section-title">Challenge Details</h3>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Challenge Title</mat-label>
+          <input matInput placeholder="Enter a captivating title" type="text" [(ngModel)]="title" name="title" required>
+          <mat-icon matSuffix>title</mat-icon>
+          <mat-hint>Make it clear and engaging</mat-hint>
+        </mat-form-field>
+        
 
-    <mat-form-field appearance="outline">
-      <mat-label>Challenge Title</mat-label>
-      <input matInput placeholder="title" type="text" [(ngModel)]="title" name="title" required>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Challenge description</mat-label>
-      <input matInput placeholder="description" type="text" [(ngModel)]="description" name="description" required>
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Challenge Description</mat-label>
+          <textarea matInput placeholder="Describe the challenge" [(ngModel)]="description" name="description" required rows="4"></textarea>
+          <mat-icon matSuffix>description</mat-icon>
+          <mat-hint>Provide detailed information about goals and requirements</mat-hint>
+        </mat-form-field>
+      </div>
+      
+      <div class="form-section date-section">
+        <h3 class="section-title">Timeline</h3>
+        
+        <div class="date-fields">
+          <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" name="start" required>
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+            <mat-hint>When the challenge begins</mat-hint>
+          </mat-form-field>
+          
+          <div class="date-separator">
+            <mat-icon>arrow_forward</mat-icon>
+          </div>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" name="end" required>
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+            <mat-hint>When the challenge concludes</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Challenge Start Date</mat-label>
-      <input matInput placeholder="start" type="date" [(ngModel)]="startDate" name="start" required>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Challenge End Date</mat-label>
-      <input matInput placeholder="end" type="date" [(ngModel)]="endDate" name="end" required>
-    </mat-form-field>
+      <div class="dialog-actions">
+        <button mat-button class="cancel-button" (click)="Close()">
+          <mat-icon>close</mat-icon>
+          Cancel
+        </button>
+        <button mat-raised-button class="save-button" (click)="onSubmit(form)">
+          <mat-icon>save</mat-icon>
+          Create Challenge
+        </button>
+      </div>
 
-    <div style="display: flex; justify-content: space-between;">
-      <button mat-button type="submit">Save</button>
-      <button mat-button mat-dialog-close (click)="Close()">Close</button>
-    </div>
-  </form>
-</mat-dialog-content>
+    </form>
+  </mat-dialog-content>
+</div>

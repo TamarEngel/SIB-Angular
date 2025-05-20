@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Admin } from '../../models/admin';
 import {jwtDecode} from 'jwt-decode';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,13 @@ import {jwtDecode} from 'jwt-decode';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-
   addAdmin(admin: Admin): Observable<any> {
-    return this.http.post<any>('https://localhost:7143/api/User/registerAdmin', admin)
+    return this.http.post<any>(`${environment.apiUrl}/User/registerAdmin`, admin);
   }
   authLogin(admin: Admin): Observable<any> {
     console.log(admin.email)
     console.log(admin.passwordHash)
-    return this.http.post<any>('https://localhost:7143/api/User/login', {
+    return this.http.post<any>(`${environment.apiUrl}/User/login`, {
       Email: admin.email,
       Password: admin.passwordHash
     },)
@@ -53,7 +53,7 @@ export class AuthService {
   
 
   getUser(userId: string) {
-    return this.http.get<Admin>(`https://localhost:7143/api/User/${userId}`)
+    return this.http.get<Admin>(`${environment.apiUrl}/User/${userId}`)
   }
 
 

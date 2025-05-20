@@ -16,6 +16,8 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent{
+  chartColors = ['#00CED1', '#1E90FF', '#FFA500', '#FF4560', '#775DD0', '#38C172'];
+  sidebarOpen = true;
 
   // userName: string = '';
 
@@ -28,7 +30,9 @@ export class HeaderComponent{
   logOut(){
     this.authService.Logout()
   }
-
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
   // getName(){
   //   this.userName = this.authService.getUsernameFromToken().charAt(0).toUpperCase()
   // }

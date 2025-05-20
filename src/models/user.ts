@@ -8,18 +8,18 @@ export class User {
         //public role: ERole,
         public createdAt: Date = new Date(),
         public isDeleted: boolean = false,
-        //public userCreationList: Creation[] = []
+        public userCreationList: Creation[] = []
     ){}
 }
 
-// export class Creation {
-//     constructor(
-//         public id: number,
-//         public title: string,
-//         public description: string,
-//         public creationDate: Date
-//     ){}
-// }
+export class Creation {
+    constructor(
+        public id: number,
+        public title: string,
+        public description: string,
+        public creationDate: Date
+    ){}
+}
 
 // export enum ERole {
 //     Admin = 'Admin',

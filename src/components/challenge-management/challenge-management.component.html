@@ -1,4 +1,4 @@
-<h2 class="challenge-title">challenges</h2>
+<!-- <h2 class="challenge-title">challenges</h2>
 <mat-card class="challeng-card">
     <mat-accordion>
         @for (challeng of challengs; track challeng) {
@@ -13,7 +13,9 @@
                 {{challeng.startDate}}
                 {{ challeng.endDate }}
                 {{challeng.createdAt}}
+                countCreations
                 {{ challeng.countCreations }}
+                
                 {{challeng.isDeleted}}
                 {{ challeng.endDate }}
                 {{challeng.createdAt}}
@@ -25,13 +27,181 @@
     <div class="add-challenge-button">
         <button mat-button color="warn" (click)="openAddCourseDialog()">add challenge</button>
     </div>
+</mat-card> -->
 
-    <!-- <div class="add-course-button">
-        <button mat-fab  (click)="toggleAdd()">Add Course</button>
+
+<!-- challenge-management.component.html -->
+<div class="admin-dashboard">
+    <!-- Sidebar -->
+    <!-- <div class="sidebar" [ngClass]="{'collapsed': !sidebarOpen}">
+        <div class="sidebar-header">
+            <h1 *ngIf="sidebarOpen">Challenge Admin</h1>
+            <button mat-icon-button (click)="toggleSidebar()">
+                <mat-icon>{{sidebarOpen ? 'close' : 'menu'}}</mat-icon>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="#">
+                        <mat-icon [style.color]="chartColors[0]">emoji_events</mat-icon>
+                        <span *ngIf="sidebarOpen">Challenges</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <mat-icon [style.color]="chartColors[1]">people</mat-icon>
+                        <span *ngIf="sidebarOpen">Participants</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <mat-icon [style.color]="chartColors[2]">bar_chart</mat-icon>
+                        <span *ngIf="sidebarOpen">Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <mat-icon [style.color]="chartColors[3]">calendar_today</mat-icon>
+                        <span *ngIf="sidebarOpen">Schedule</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <mat-icon [style.color]="chartColors[4]">settings</mat-icon>
+                        <span *ngIf="sidebarOpen">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div> -->
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <h2>Challenge Management</h2>
+        </header>
+
+        <!-- Challenge Management Dashboard -->
+        <main class="dashboard-content">
+            <div class="dashboard-header">
+                <div class="challenges-count">
+                    <h3>All Challenges</h3>
+                    <span class="challenge-count-badge">{{filteredChallenges.length}} total</span>
+                </div>
+                <div class="dashboard-actions">
+                    <button mat-flat-button [style.background-color]="chartColors[0]" class="add-challenge-btn"
+                        (click)="openAddChallengeDialog()">
+                        <mat-icon>add</mat-icon>
+                        Add Challenge
+                    </button>
+                </div>
+            </div>
+
+            <!-- רשימת האתגרים -->
+            <mat-card class="challenges-table">
+                <div class="table-header">
+                    <div class="col-details">Challenge Details</div>
+                    <div class="col-dates">Date Range</div>
+                    <div class="col-participants">Participants</div>
+                    <div class="col-status">Status</div>
+                    <div class="col-actions">Actions</div>
+                </div>
+                <ng-container *ngFor="let challenge of filteredChallenges">
+                    <div class="challenge-row" [ngClass]="{'deleted': challenge.isDeleted}">
+                        <div class="challenge-main-row" (click)="toggleExpand(challenge.id)">
+                            <div class="col-details">
+                                <h4>{{challenge.title}}</h4>
+                            </div>
+                            <div class="col-dates">
+                                <div>{{challenge.startDate}}</div>
+                                <div class="date-to">to {{challenge.endDate}}</div>
+                            </div>
+                            <div class="col-participants">
+                                <div class="participant-count">
+                                    <span class="dot" [style.background-color]="chartColors[2]"></span>
+                                    <span>{{challenge.countCreations}}</span>
+                                </div>
+                                <div class="submission-count">submissions</div>
+                            </div>
+                            <div class="col-status">
+                                <mat-chip [ngClass]="challenge.isDeleted ? 'status-deleted' : 'status-active'">
+                                    {{challenge.isDeleted ? 'Deleted' : 'Active'}}
+                                </mat-chip>
+                            </div>
+                            <div class="col-actions">
+                                <button mat-icon-button matTooltip="View">
+                                    <mat-icon [style.color]="chartColors[0]">visibility</mat-icon>
+                                </button>
+                                <button mat-icon-button matTooltip="Edit">
+                                    <mat-icon [style.color]="chartColors[1]">edit</mat-icon>
+                                </button>
+                                <button mat-icon-button matTooltip="Delete">
+                                    <mat-icon [style.color]="chartColors[3]">delete</mat-icon>
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <!-- Expanded Challenge Details -->
+                        <div class="challenge-details" *ngIf="expandedChallenge === challenge.id">
+                            <div class="details-grid">
+
+                                <mat-card class="detail-card">
+                                    <h5>Quick Description</h5>
+                                       <p class="cc">{{challenge.description}}</p>
+                                </mat-card>
+
+                                
+                                <mat-card class="detail-card">
+                                    <h5>Participation Stats</h5>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Total Submissions:</span>
+                                        <span>{{challenge.countCreations}}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Completion Rate:</span>
+                                        <span>{{getCompletionRate(challenge)}}%</span>
+                                    </div>
+                                    <div class="progress-container">
+                                        <mat-progress-bar mode="determinate" [value]="getCompletionRate(challenge)"
+                                            [color]="'accent'"></mat-progress-bar>
+                                    </div>
+                                </mat-card>
+                                
+                                <mat-card class="detail-card">
+                                    <h5>Challenge Details</h5>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Created:</span>
+                                        <span>{{challenge.createdAt}}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Start Date:</span>
+                                        <span>{{challenge.startDate}}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">End Date:</span>
+                                        <span>{{challenge.endDate}}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Status:</span>
+                                        <span>{{challenge.isDeleted ? 'Inactive ' : 'Active'}}</span>
+                                    </div>
+                                </mat-card>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- No challenges found message -->
+                <div class="no-challenges" *ngIf="filteredChallenges.length === 0">
+                    <mat-icon>search_off</mat-icon>
+                    <p>No challenges found</p>
+                </div>
+            </mat-card>
+        </main>
     </div>
-    @if(this.add){
-        <app-add-challenge></app-add-challenge>
-        <app-add-challenge [challenge]="challenge" (save)="addChallenge($event)"></app-add-challenge>
-    } -->
-
-</mat-card>
+</div>

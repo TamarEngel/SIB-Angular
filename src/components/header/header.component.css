@@ -1,70 +1,119 @@
-.toolbar {
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px 20px;
-  position: fixed;
-  top: 0;
+/* Main Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
   width: 100%;
-  z-index: 100;
-  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+/* Background Image Container */
+.image1 {
+  position: absolute;
+  top: 0;
+  left: 5;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../assets/1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:83%;
+  height: 95%;
+  z-index: 1; /* Low z-index but above 0 */
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 260px;
+  background-color: white;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
   display: flex;
-  align-items: center;
-  justify-content: space-between; /* מפריד בין הצדדים */
-  height: 70px; /* גובה קבוע ל-Header */
+  flex-direction: column;
+  z-index: 10; /* Higher than background */
+  flex-shrink: 0;
+  position: relative;
+  
+  &.collapsed {
+    width: 90px;
+  }
+  
+  .sidebar-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaedf3;
+    height: 64px;
+    
+    h1 {
+      font-size: 20px;
+      font-weight: 549;
+      margin: 0;
+      white-space: nowrap;
+    }
+  }
+  
+  .sidebar-nav {
+    padding: 16px;
+    flex: 1;
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin-bottom: 8px;
+        border-radius: 8px;
+        overflow: hidden;
+        
+        &.active a {
+          background-color: #f0f4f8;
+          color: #1a202c;
+        }
+        
+        a {
+          display: flex;
+          align-items: center;
+          padding: 12px;
+          text-decoration: none;
+          color: #4a5568;
+          border-radius: 8px;
+          transition: background-color 0.2s;
+          cursor: pointer;
+          
+          &:hover {
+            background-color: #f0f4f8;
+          }
+          
+          mat-icon {
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+  }
 }
 
-/* יישור התוכן במרכז */
-.toolbar-content {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* ממקם את הכפתורים במרכז */
-  flex-grow: 1; /* ממלא את החלל שנותר בין פרופיל לכפתורים */
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  position: relative; 
+  z-index: 5; /* Higher than background */
+  padding: 20px;
+  /* background-color: rgba(255, 255, 255, 0.7);  */
+
+  &.expanded {
+    margin-left: 0;
+  }
 }
 
-/* עיצוב לכפתורי הניווט */
-.navigation a,
-.navigation button[mat-button] {
-  margin: 0 15px;
-  text-decoration: none;
-  font-size: 1.1em;
-  color: #2196F3;
-  transition: color 0.3s ease;
-}
-
-.navigation a:hover,
-.navigation button[mat-button]:hover {
-  color: black;
-}
-
-.active {
-  color: #0b7dda;
-  border-bottom: 2px solid #0b7dda;
-}
-
-/* עיצוב לעיגול הפרופיל */
-.profile-circle {
-  width: 40px;
-  height: 40px;
-  background-color: #70b2b1;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-left: 20px; /* רווח מהצד שמאל */
-}
-
-/* עיצוב למעבר עכבר על פרופיל */
-.profile-circle:hover {
-  background-color: #5a9897;
-}
-
-/* מרווח תחתון עבור תצוגת ה-router-outlet */
-router-outlet {
-  display: block;
-  margin-top: 100px;
+/* Active Link Styles */
+.active1 {
+  background-color: #f0f4f8 !important;
+  color: #1a202c !important;
+  font-weight: 500;
 }

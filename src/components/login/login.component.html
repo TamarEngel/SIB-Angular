@@ -1,32 +1,82 @@
-<mat-card class="login-card">
-    <mat-card-title>Login</mat-card-title>
-    <h4></h4>
-    <form [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput id="email" formControlName="email" required>
-            @if (user['email']&&user['email'].errors && user['email'].touched && user['email'].errors["required"]) {
-                <mat-error>email is required</mat-error>
-              
-            }
-            @if(user['email']&&user['email'].errors && user['email'].touched&&user["email"].errors["email"]) {
-                <mat-error>email is not valid</mat-error>
-            }
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput id="passwordHash" formControlName="passwordHash" [type]="hidePassword ? 'password' : 'text'" required>
-            <mat-icon matSuffix (click)="togglePasswordVisibility()"><div id="eye">🫣</div>  </mat-icon>            
-            @if (user['passwordHash']&&user['passwordHash'].errors && user['passwordHash'].touched && user['passwordHash'].errors["required"]) {
-                <mat-error>password is required</mat-error>
-            }
-            @if(user['passwordHash']&&user['passwordHash'].errors && user['passwordHash'].touched &&user["passwordHash"].errors["minlength"]) {
-            <mat-error>password must be at least 4 characters</mat-error>
-            }
-        
-        </mat-form-field>
-
-        <button mat-raised-button type="submit" [disabled]="userLoginForm.invalid">Submit</button>
-    </form>
-</mat-card>
+<div class="login-container">
+    <div class="login-card-wrapper">
+      <mat-card class="login-card">
+        <div class="login-header">
+          <div class="login-logo">
+            <mat-icon>lock_open</mat-icon>
+          </div>
+          <h1 class="login-title">Welcome Back</h1>
+          <p class="login-subtitle">Sign in to continue your journey</p>
+        </div>
+  
+        <mat-card-content class="login-content">
+          <form [formGroup]="userLoginForm" (ngSubmit)="onSubmit()" class="login-form">
+            <!-- Email Field -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Email Address</mat-label>
+              <mat-icon matPrefix class="form-icon">email</mat-icon>
+              <input matInput id="email" formControlName="email" placeholder="your.email@example.com" required>
+              @if (user['email'] && user['email'].errors && user['email'].touched && user['email'].errors["required"]) {
+                <mat-error>
+                  <mat-icon class="error-icon">error_outline</mat-icon>
+                  Email is required
+                </mat-error>
+              }
+              @if(user['email'] && user['email'].errors && user['email'].touched && user["email"].errors["email"]) {
+                <mat-error>
+                  <mat-icon class="error-icon">error_outline</mat-icon>
+                  Please enter a valid email
+                </mat-error>
+              }
+              <mat-hint *ngIf="!user['email'].errors">We'll never share your email</mat-hint>
+            </mat-form-field>
+  
+            <!-- Password Field -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Password</mat-label>
+              <mat-icon matPrefix class="form-icon">vpn_key</mat-icon>
+              <input matInput id="passwordHash" formControlName="passwordHash" 
+                    [type]="hidePassword ? 'password' : 'text'" 
+                    placeholder="Enter your password" required>
+              <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              @if (user['passwordHash'] && user['passwordHash'].errors && user['passwordHash'].touched && user['passwordHash'].errors["required"]) {
+                <mat-error>
+                  <mat-icon class="error-icon">error_outline</mat-icon>
+                  Password is required
+                </mat-error>
+              }
+              @if(user['passwordHash'] && user['passwordHash'].errors && user['passwordHash'].touched && user["passwordHash"].errors["minlength"]) {
+                <mat-error>
+                  <mat-icon class="error-icon">error_outline</mat-icon>
+                  Password must be at least 4 characters
+                </mat-error>
+              }
+              <mat-hint *ngIf="!user['passwordHash'].errors">Minimum 4 characters</mat-hint>
+            </mat-form-field>
+  
+            <div class="form-options">
+              <mat-checkbox color="primary">Remember me</mat-checkbox>
+              <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+  
+            <button mat-raised-button type="submit" class="login-button" [disabled]="userLoginForm.invalid">
+              <mat-icon>login</mat-icon>
+              <span>Sign In</span>
+            </button>
+          </form>
+        </mat-card-content>
+  
+        <div class="login-footer">
+          <p>Don't have an account? <a href="#" class="signup-link">Sign up</a></p>
+        </div>
+      </mat-card>
+  
+      <div class="login-decorations">
+        <div class="decoration-circle circle-1"></div>
+        <div class="decoration-circle circle-2"></div>
+        <div class="decoration-circle circle-3"></div>
+      </div>
+    </div>
+  </div>

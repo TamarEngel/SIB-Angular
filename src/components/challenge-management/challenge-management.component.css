@@ -1,136 +1,363 @@
-/* אנימציה לכרטיס קורס */
-@keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* כרטיס קורס - רקע שקוף */
-  .challenge-card {
-    background-color: rgba(255, 255, 255, 0.7); /* רקע לבן שקוף */
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 60%;
-    margin-left: 20%;
-    animation: slideIn 0.5s ease-out; /* אנימציה של הופעה */
-  }
-  
-  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
-    font-size: 1.1em; /* הגדלתי את הגודל */
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  h2{
-    margin-left: 45%;
-    font-family: 'Roboto', sans-serif;
-    color: #70b2b1;
-  }
-  /* כפתור הוספה */
-  .add-challenge-button {
-    width: 800px;
-    margin-top: 20px;
-  }
-  .add-challenge-button button {
-    height: 40px;
-    width: 120px;
-    margin-top: 20px;
-    border: 5px;
-  }
-  
-  button.mat-fab {
-    background-color: #ffffff;
-    border: 2px solid #70b2b1;
-    color: #70b2b1;
-    font-size: 1.1em;
-    padding: 12px 24px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button.mat-fab:hover {
-    background-color: #70b2b1;
-    color: white;
-  }
-  
-  /* כפתורים בתוך ה-Panel */
-  .action-buttons {
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  .action-buttons button {
-    color: #70b2b1;
-    border: 0px;
-  }
-  .action-buttons button:hover {
-    color: white;
-    border: 0px;
-  }
-  button {
-    background-color: #ffffff;
-    border: 2px solid #70b2b1;
-    color: #70b2b1;
-    font-size: 1em;
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #70b2b1;
-    color: white;
-  }
-  
-  button.mat-raised-button {
-    margin-right: 10px;
-    color: white;
-  }
-  
-  /* עיצוב הטקסט */
-  .mat-card-content {
-    font-size: 1.3em; /* הגדלתי את הגודל */
-    color: #333;
-    line-height: 1.6;
-  }
-  
-  .mat-list-item {
-    font-size: 1.2em; /* הגדלתי את הגודל */
-    color: #555;
-  }
-  
-  /* ריווח ואפקטים על הכפתורים */
-  .mat-list {
-    margin-top: 10px;
-  }
-  
-  .mat-panel-title {
-    font-weight: normal;
-  }
-  
-  /* כותרת חזרה למעלה */
-  h4 {
-    font-size: 1.3em; /* הגדלתי את הגודל */
-    color: #333;
-  }
-  
-  /* עיצוב כללי */
-  .mat-expansion-panel {
-    margin-bottom: 15px;
-  }
-  .mat-list{
-    margin-bottom: 20px;
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f5f7fa;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 240px;
+  background-color: white;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+
+  &.collapsed {
+    width: 70px;
   }
 
-  .hg{
-    margin-bottom: 20px;
-    color: #70b2b1;
-    border-color: #ffffff;
-    cursor: pointer;
+  .sidebar-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaedf3;
+    height: 64px;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+      white-space: nowrap;
+    }
   }
+
+  .sidebar-nav {
+    padding: 16px;
+    flex: 1;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 8px;
+        border-radius: 8px;
+        overflow: hidden;
+
+        &.active a {
+          background-color: #f0f4f8;
+          color: #1a202c;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          padding: 12px;
+          text-decoration: none;
+          color: #4a5568;
+          border-radius: 8px;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: #f0f4f8;
+          }
+
+          mat-icon {
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header Styles */
+.header {
+  height: 80px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 5;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+
+/* Dashboard Content Styles */
+.dashboard-content {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  height: 120px;
+  .challenges-count {
+    display: flex;
+    align-items: center;
+
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0;
+      margin-right: 12px;
+    }
+
+    .challenge-count-badge {
+      background-color: #f0f4f8;
+      color: #4a5568;
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+
+  .dashboard-actions {
+    display: flex;
+    gap: 12px;
+
+    button {
+      display: flex;
+      align-items: center;
+
+      mat-icon {
+        margin-right: 4px;
+      }
+    }
+
+    .add-challenge-btn {
+      color: white;
+    }
+  }
+}
+
+/* Challenges Table Styles */
+.challenges-table {
+  padding: 0;
+
+  .table-header {
+    display: grid;
+    grid-template-columns: 4fr 2fr 2fr 2fr 2fr;
+    padding: 16px;
+    border-bottom: 1px solid #eaedf3;
+    background-color: #ffffff;
+    font-weight: 500;
+    color: #4a5568;
+    font-size: 14px;
+
+    .col-actions {
+      text-align: right;
+    }
+  }
+
+  .challenge-row {
+    border-bottom: 1px solid #e7e4e4;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.deleted {
+      opacity: 0.7;
+    }
+  }
+
+  .challenge-main-row {
+    display: grid;
+    grid-template-columns: 4fr 2fr 2fr 2fr 2fr;
+    padding: 16px;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+
+    .col-details {
+      h4 {
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0 0 4px;
+      }
+
+      p {
+        margin: 0;
+        color: #718096;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .col-dates {
+      font-size: 14px;
+
+      .date-to {
+        color: #718096;
+      }
+    }
+
+    .col-participants {
+      .participant-count {
+        display: flex;
+        align-items: center;
+
+        .dot {
+          height: 8px;
+          width: 8px;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+      }
+
+      .submission-count {
+        font-size: 12px;
+        color: #718096;
+        margin-top: 4px;
+      }
+    }
+
+    .col-status {
+      .mat-mdc-chip {
+        height: 24px;
+        font-size: 12px;
+
+        &.status-active {
+          background-color: #def7ec;
+          color: #046c4e;
+        }
+
+        &.status-deleted {
+          background-color: #fee2e2;
+          color: #b91c1c;
+        }
+      }
+    }
+
+    .col-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .challenge-details {
+    background-color: #f7fafc;
+    padding: 16px;
+    border-top: 1px solid #eaedf3;
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+
+      .detail-card {
+        padding: 16px;
+
+        h5 {
+          font-size: 14px;
+          font-weight: 500;
+          color: #718096;
+          margin: 0 0 16px;
+        }
+
+        .detail-item {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 12px;
+          font-size: 14px;
+
+          .detail-label {
+            color: #718096;
+          }
+        }
+
+        .progress-container {
+          margin-top: 16px;
+
+          mat-progress-bar {
+            height: 8px;
+            border-radius: 4px;
+          }
+        }
+
+        .action-buttons {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+
+          button {
+            font-size: 12px;
+
+            mat-icon {
+              font-size: 16px;
+              height: 16px;
+              width: 16px;
+              margin-right: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .no-challenges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+    color: #a0aec0;
+
+    mat-icon {
+      font-size: 48px;
+      height: 48px;
+      width: 48px;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-infix {
+    padding: 6px 0 !important;
+  }
+
+  .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-flex {
+    padding: 0 12px !important;
+  }
+
+  .mat-mdc-progress-bar .mdc-linear-progress__bar-inner {
+    border-top-width: 8px !important;
+  }
+}
+
+.cc {
+  font-size: 15px;
+}

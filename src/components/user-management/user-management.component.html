@@ -1,32 +1,123 @@
-<h2 class="user-title">users</h2>
-<mat-card class="user-card">
-    <mat-accordion>
-        @for (user of users; track user.id) {
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        {{user.userId}}
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <p class="user-description">
-                    {{ user.name }}
-                    {{ user.email }}
-                    {{user.isDeleted}}
-                    {{ user.createdAt }}
-                </p>
-            </mat-expansion-panel>
-            <button mat-fab (click)="deleteUser(user.userId)">Delete user</button>
-        }
-    </mat-accordion>
-
-
-
-    <!-- <div class="add-course-button">
-        <button mat-fab  (click)="toggleAdd()">Add Course</button>
+<div class="user-management-container">
+    <header class="page-header">
+      <h1 class="page-title">User Management Dashboard</h1>
+      <p class="page-description">Manage system users and their permissions</p>
+    </header>
+  
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-value">{{users.length}}</div>
+        <div class="stat-label">Total Users</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{getActiveUsers()}}</div>
+        <div class="stat-label">Active Users</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{getInactiveUsers()}}</div>
+        <div class="stat-label">Inactive Users</div>
+      </div>
     </div>
-    @if(this.add){
-        <app-add-challenge></app-add-challenge>
-        <app-add-challenge [challenge]="challenge" (save)="addChallenge($event)"></app-add-challenge>
-    } -->
-
-</mat-card>
+  
+    <div class="actions-bar">
+      <div class="search-container">
+        <input 
+          type="text" 
+          placeholder="Search users..." 
+          class="search-input"
+          [(ngModel)]="searchTerm"
+          (input)="filterUsers()">
+      </div>
+    </div>
+  
+    <mat-card class="users-card">
+      <mat-card-header>
+        <mat-card-title>System Users</mat-card-title>
+      </mat-card-header>
+      
+      <div class="user-list-header">
+        <div class="user-id-col">ID</div>
+        <div class="user-name-col">Name</div>
+        <div class="user-email-col">Email</div>
+        <div class="user-status-col">Status</div>
+        <div class="user-created-col">Created</div>
+        <div class="user-content-col">Content</div>
+        <div class="user-actions-col">Actions</div>
+      </div>
+  
+      <mat-accordion multi="true" class="users-accordion">
+        @for (user of filteredUsers; track user.id) {
+          <mat-expansion-panel class="user-panel" [ngClass]="{'deleted-user': user.isDeleted}">
+            <mat-expansion-panel-header class="user-panel-header">
+              <div class="user-id-col">{{user.userId}}</div>
+              <div class="user-name-col">{{user.name}}</div>
+              <div class="user-email-col">{{user.email}}</div>
+              <div class="user-status-col">
+                <span class="status-badge" [ngClass]="user.isDeleted ? 'status-inactive' : 'status-active'">
+                  {{user.isDeleted ? 'Inactive' : 'Active'}}
+                </span>
+              </div>
+              <div class="user-created-col">{{formatDate(user.createdAt)}}</div>
+              <div class="user-content-col">
+                <span class="content-badge">{{user.userCreationList.length}}</span>
+              </div>
+              <div class="user-actions-col">
+                <button mat-button class="delete-btn" (click)="deleteUser(user.userId); $event.stopPropagation()">
+                  Delete
+                </button>
+              </div>
+            </mat-expansion-panel-header>
+            
+            <div class="user-details">
+              <div class="user-info-section">
+                <h3>User Information</h3>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <label>User ID:</label>
+                    <span>{{user.userId}}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Full Name:</label>
+                    <span>{{user.name}}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Email:</label>
+                    <span>{{user.email}}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Status:</label>
+                    <span>{{user.isDeleted ? 'Inactive' : 'Active'}}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Created:</label>
+                    <span>{{formatDate(user.createdAt)}}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Content Count:</label>
+                    <span>{{user.userCreationList.length}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        }
+      </mat-accordion>
+  
+      @if (filteredUsers.length === 0) {
+        <div class="no-results">
+          <span class="no-results-icon">🔍</span>
+          <p>No users found</p>
+        </div>
+      }
+    </mat-card>
+  
+    <div class="pagination-controls">
+      <button mat-button class="pagination-btn" [disabled]="currentPage === 1" (click)="prevPage()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span class="page-indicator">Page {{currentPage}} of {{totalPages}}</span>
+      <button mat-button class="pagination-btn" [disabled]="currentPage === totalPages" (click)="nextPage()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </div>

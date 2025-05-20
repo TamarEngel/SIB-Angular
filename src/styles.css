@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/@angular/material/prebuilt-themes/rose-red.css";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 /* html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 html{
   height: 100vh;
 }
 body {
-  /* background-image: url('assets/pexels-pixabay-256417.jpg');  */
-  background-size: cover; /* התמונה תתמלא ברקע כל העמוד */
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center; /* מיקום התמונה במרכז */
   background-attachment: fixed; /* רקע קבוע שלא יזוז בעת גלילה */
   margin: 0;
@@ -16,3 +16,11 @@ body {
   font-family: 'Arial', sans-serif; /* גופן כללי לדף */
   overflow: auto; /* גלילה תתאפשר רק כאשר התוכן חורג */
 }
+/* :host {
+  display: block;
+  min-height: 100vh;
+  background-image: url('/src/1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+} */

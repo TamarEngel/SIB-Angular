@@ -1,0 +1,107 @@
+/* סגנון כללי */
+.dashboard-container {
+    font-family: 'Heebo', Arial, sans-serif;
+    direction: rtl;
+    padding: 20px;
+    background-color: #f5f7fa;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* כותרת לוח המחוונים */
+  .dashboard-header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .dashboard-header h1 {
+    color: #333;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    padding: 10px 0;
+  }
+  
+  /* מכיל את הכרטיסים */
+  .dashboard-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin: 0 auto;
+  }
+  
+  /* עיצוב הכרטיסים */
+  .card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* כותרת הכרטיס */
+  .card-header {
+    padding: 18px 24px;
+    background-color: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .card-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  /* תוכן הכרטיס */
+  .card-body {
+    padding: 24px;
+    min-height: 400px; /* גובה מינימלי גדול יותר */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* מיכל ייעודי לגרפים */
+  .chart-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* אנימציית טעינה */
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* תגובתיות */
+  @media (min-width: 768px) {
+    .dashboard-cards {
+      flex-direction: column;
+    }
+    
+    .card-body {
+      min-height: 450px; /* גובה גדול יותר במסכים גדולים */
+    }
+  }
+  
+  /* עבור מסכים גדולים יותר */
+  @media (min-width: 1200px) {
+    .dashboard-cards {
+      flex-direction: column;
+      max-width: 1000px;
+    }
+  
+    .card-body {
+      min-height: 500px; /* גובה מקסימלי במסכים רחבים */
+    }
+  }

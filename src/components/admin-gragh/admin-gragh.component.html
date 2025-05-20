@@ -1,0 +1,60 @@
+
+<div class="dashboard-container">
+  <!-- לוח מחוונים כותרת -->
+  <div class="dashboard-header">
+    <h1>לוח מחוונים ניהולי</h1>
+  </div>
+
+  <!-- מכיל את הגרפים בכרטיסים -->
+  <div class="dashboard-cards">
+    <!-- כרטיס לגרף עמודות -->
+    <div class="card">
+      <div class="card-header">
+        <h2>נתוני אתגרים</h2>
+      </div>
+      <div class="card-body">
+        @if (barChartOptions) {
+          <apx-chart class="hh"
+            [series]="barChartOptions.series"
+            [chart]="barChartOptions.chart"
+            [title]="barChartOptions.title"
+            [colors]="barChartOptions.colors"
+            [xaxis]="barChartOptions.xaxis"
+            [yaxis]="barChartOptions.yaxis"
+            [dataLabels]="barChartOptions.dataLabels"
+            [grid]="barChartOptions.grid"
+            [tooltip]="barChartOptions.tooltip"
+            [plotOptions]="barChartOptions.plotOptions">
+          </apx-chart>
+        } @else {
+          <div class="loading">טוען נתונים...</div>
+        }
+      </div>
+    </div>
+
+    <!-- כרטיס לגרף עוגה -->
+    <div class="card">
+      <div class="card-header">
+        <h2>נתוני משתמשים</h2>
+      </div>
+      <div class="card-body">
+        @if (pieChartOptions) {
+          <apx-chart
+            [series]="pieChartOptions.series"
+            [labels]="pieChartOptions.labels"
+            [colors]="pieChartOptions.colors"
+            [chart]="pieChartOptions.chart"
+            [title]="pieChartOptions.title"
+            [dataLabels]="pieChartOptions.dataLabels"
+            [stroke]="pieChartOptions.stroke"
+            [plotOptions]="pieChartOptions.plotOptions"
+            [legend]="pieChartOptions.legend"
+            [responsive]="pieChartOptions.responsive">
+          </apx-chart>
+        } @else {
+          <div class="loading">טוען נתונים...</div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
