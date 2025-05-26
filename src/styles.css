@@ -1,26 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
-/* html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
 html{
   height: 100vh;
 }
 body {
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; /* מיקום התמונה במרכז */
-  background-attachment: fixed; /* רקע קבוע שלא יזוז בעת גלילה */
+  background-position: center; 
+  background-attachment: fixed; 
   margin: 0;
   padding: 0;
-  height: 100vh; /* על מנת שהתמונה תכסה את כל גובה הדף */
-  font-family: 'Arial', sans-serif; /* גופן כללי לדף */
-  overflow: auto; /* גלילה תתאפשר רק כאשר התוכן חורג */
+  height: 100vh; 
+  font-family: 'Arial', sans-serif; 
+  overflow: auto; 
 }
-/* :host {
-  display: block;
-  min-height: 100vh;
-  background-image: url('/src/1.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-} */

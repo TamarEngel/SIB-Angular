@@ -1,13 +1,13 @@
 export class Challenge{
     constructor(
-        public id: number, // מזהה אתגר
-        public title: string, // שם האתגר8
-        public description: string, // תיאור האתגר8
-        public startDate: Date, // תאריך התחלה8
-        public endDate: Date, // תאריך סיום8
-        public winnerCreationId?: number, // מזהה היצירה הזוכה
-        public countCreations: number = 0, // כמות היצירות שהועלו לאתגר
-        public isDeleted: boolean = false, // האם האתגר נמחק
-        public createdAt: Date = new Date() // תאריך יצירה (ברירת מחדל: עכשיו)
+        public id: number,
+        public title: string, 
+        public description: string, 
+        public startDate: Date, 
+        public endDate: Date, 
+        public winnerCreationId?: number, 
+        public countCreations: number = 0, 
+        public isDeleted: boolean = false, 
+        public createdAt: Date = new Date() 
     ){}
 }

@@ -31,10 +31,8 @@ export class UserManagementComponent implements OnInit {
   searchTerm: string = '';
   isLoading: boolean = false;
   
-  // Colors for charts and UI elements
   chartColors = ['#00CED1', '#1E90FF', '#FFA500', '#FF4560', '#775DD0', '#38C172'];
   
-  // Pagination
   itemsPerPage: number = 10;
   currentPage: number = 1;
   totalPages: number = 1;
@@ -95,7 +93,7 @@ export class UserManagementComponent implements OnInit {
       );
     }
     this.calculatePagination();
-    this.currentPage = 1; // Reset to first page when filtering
+    this.currentPage = 1; 
   }
 
   calculatePagination() {

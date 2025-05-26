@@ -45,7 +45,7 @@ export class AddChallengeComponent {
       startDate: this.startDate,
       endDate: this.endDate
     };
-    this.dialogRef.close(challengeData); // סגירת הדיאלוג עם נתוני האתגר
+    this.dialogRef.close(challengeData); 
   }
 
   Close(): void {

@@ -16,7 +16,6 @@ export class AdminGraghComponent implements OnInit {
   pieChartOptions: any;
   isLoading: boolean = true;
 
-  // צבעים מודרניים וצבעוניים לגרפים
   chartColors = ['#00CED1', '#1E90FF', '#FFA500', '#FF4560', '#775DD0', '#38C172'];
 
   constructor(
@@ -39,7 +38,7 @@ export class AdminGraghComponent implements OnInit {
         chart: { 
           type: 'bar', 
           height: 450,
-          width: '200%', // שימוש ב-100% מהרוחב הזמין
+          width: '200%', 
           fontFamily: 'Heebo, Arial, sans-serif',
           toolbar: {
             show: false
@@ -62,7 +61,7 @@ export class AdminGraghComponent implements OnInit {
         plotOptions: {
           bar: {
             borderRadius: 4,
-            columnWidth: '45%', // עמודות מעט יותר דקות לאפשר יותר מרווח
+            columnWidth: '45%', 
             distributed: true
           }
         },
@@ -153,7 +152,7 @@ export class AdminGraghComponent implements OnInit {
         chart: {
           type: 'donut',
           height: 450,
-          width: '150%', // שימוש ב-100% מהרוחב הזמין
+          width: '150%', 
           fontFamily: 'Heebo, Arial, sans-serif',
           dropShadow: {
             enabled: true,
@@ -162,7 +161,7 @@ export class AdminGraghComponent implements OnInit {
           }
         },
         title: {
-          text: 'פילוח לפי כמות יצירות של משתמשים',
+          text: 'Segmentation by number of user creations',
           align: 'center',
           style: {
             fontSize: '18px',

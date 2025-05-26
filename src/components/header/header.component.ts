@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,9 +19,7 @@ export class HeaderComponent{
   chartColors = ['#00CED1', '#1E90FF', '#FFA500', '#FF4560', '#775DD0', '#38C172'];
   sidebarOpen = true;
 
-  // userName: string = '';
-
-  constructor(private challengeService: ChallengeService, private authService: AuthService) { }
+  constructor(private challengeService: ChallengeService, private authService: AuthService, private router: Router) { }
 
   getFromLocalStorageStorage(key: string): string | null {
     return localStorage.getItem(key);
@@ -29,11 +27,10 @@ export class HeaderComponent{
 
   logOut(){
     this.authService.Logout()
+    this.router.navigate(['/home']);
   }
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
   }
-  // getName(){
-  //   this.userName = this.authService.getUsernameFromToken().charAt(0).toUpperCase()
-  // }
+
 }

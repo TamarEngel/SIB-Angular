@@ -75,7 +75,6 @@ export class LoginComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
 
-  // Helper method for showing notifications (you can replace with your preferred notification system)
   private showNotification(message: string, type: 'success' | 'error') {
     if (type === 'success') {
       alert('✅ ' + message);
