@@ -34,7 +34,7 @@ export class AdminGraghComponent implements OnInit {
       const data = challenges.map((c: any) => c.countCreations);
 
       this.barChartOptions = {
-        series: [{ name: 'תמונות', data }],
+        series: [{ name: 'images', data }],
         chart: { 
           type: 'bar', 
           height: 450,
@@ -51,7 +51,7 @@ export class AdminGraghComponent implements OnInit {
         },
         colors: this.chartColors,
         title: { 
-          text: 'כמות תמונות לכל אתגר', 
+          text: 'Number of images per challenge', 
           align: 'center',
           style: {
             fontSize: '18px',
@@ -83,7 +83,7 @@ export class AdminGraghComponent implements OnInit {
         },
         yaxis: { 
           title: { 
-            text: 'כמות',
+            text: 'amount',
             style: {
               fontSize: '14px'
             }
@@ -131,7 +131,7 @@ export class AdminGraghComponent implements OnInit {
           theme: 'light',
           y: {
             formatter: (val: number) => {
-              return val + ' תמונות';
+              return val + 'images';
             }
           }
         }
@@ -190,7 +190,7 @@ export class AdminGraghComponent implements OnInit {
                 },
                 total: {
                   show: true,
-                  label: 'סך הכל',
+                  label: 'Total Images',
                   fontSize: '16px',
                   formatter: (w: any) => {
                     return w.globals.seriesTotals.reduce((a: number, b: number) => {
