@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     if (token) {
       return true;
     } else {
-      alert('עליך להתחבר כדי לגשת לעמוד זה');
+      alert('Please log in to access this page.');
       this.router.navigate(['/login']);
       return false;
     }
