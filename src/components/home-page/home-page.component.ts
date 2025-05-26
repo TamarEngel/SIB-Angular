@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
@@ -12,4 +11,3 @@ import { environment } from '../../environments/environment';
 
 export class HomePageComponent {
 }
-console.log('API URL:', environment.apiUrl);
