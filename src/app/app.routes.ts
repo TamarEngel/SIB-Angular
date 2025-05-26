@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-     { path: 'home2', component: HeaderComponent, },
+     { path: 'home', component: HomePageComponent, },
     { path: 'login', component: LoginComponent },
     { path: 'callenges', component: ChallengeManagementComponent,canActivate: [AuthGuard]},
     { path: 'userManagement', component: UserManagementComponent,canActivate: [AuthGuard]},
