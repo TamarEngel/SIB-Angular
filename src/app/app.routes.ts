@@ -5,14 +5,12 @@ import { HomePageComponent } from '../components/home-page/home-page.component';
 import { UserManagementComponent } from '../components/user-management/user-management.component';
 import { AdminGraghComponent } from '../components/admin-gragh/admin-gragh.component';
 import { HeaderComponent } from '../components/header/header.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    // { path: 'home', component: HeaderComponent, },
     { path: 'login', component: LoginComponent },
-    // { path: 'register', component: RegisterComponent },
-    { path: 'callenges', component: ChallengeManagementComponent},
-    { path: 'userManagement', component: UserManagementComponent},
-    { path: 'adminGraghs', component: AdminGraghComponent},
-    // { path: 'myCourses', component: MyCoursesComponent ,canActivate:[authGuard]},
+    { path: 'callenges', component: ChallengeManagementComponent,canActivate: [AuthGuard]},
+    { path: 'userManagement', component: UserManagementComponent,canActivate: [AuthGuard]},
+    { path: 'adminGraghs', component: AdminGraghComponent,canActivate: [AuthGuard]},
 ];
