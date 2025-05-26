@@ -1,77 +1,7 @@
-<!-- 
-<div class="app-container">
 
-  <div class="sidebar" [class.collapsed]="!sidebarOpen">
-    <div class="sidebar-header">
-      @if (sidebarOpen) {
-        <h1>Management system</h1>
-      }
-      <button mat-icon-button (click)="toggleSidebar()">
-        <mat-icon>{{sidebarOpen ? 'close' : 'menu'}}</mat-icon>
-      </button>
-    </div>
-    
-    <nav class="sidebar-nav">
-      <ul>
-        <li >
-          <a routerLink="/callenges" routerLinkActive="active1">
-            <mat-icon [style.color]="chartColors[0]">emoji_events</mat-icon>
-            @if (sidebarOpen) {
-              <span>Challenges</span>
-            }
-          </a>
-        </li>
-        <li>
-          <a routerLink="/userManagement" routerLinkActive="active1">
-            <mat-icon [style.color]="chartColors[1]">people</mat-icon>
-            @if (sidebarOpen) {
-              <span>Participants</span>
-            }
-          </a>
-        </li>
-        <li>
-          <a routerLink="/adminGraghs" routerLinkActive="active1">
-            <mat-icon [style.color]="chartColors[2]">bar_chart</mat-icon>
-            @if (sidebarOpen) {
-              <span>Analytics</span>
-            }
-          </a>
-        </li>
-        @if(!getFromLocalStorageStorage('token')) {
-          <li>
-            <a routerLink="login" routerLinkActive="active1">
-              <mat-icon [style.color]="chartColors[3]">login</mat-icon>
-              @if (sidebarOpen) {
-                <span>Login</span>
-              }
-            </a>
-          </li>
-        } @else {
-          <li>
-            <a (click)="logOut()">
-              <mat-icon [style.color]="chartColors[3]">logout</mat-icon>
-              @if (sidebarOpen) {
-                <span>logout</span>
-              }
-            </a>
-          </li>
-        }
-      </ul>
-    </nav>
-  </div>
-  <div class="image1">
-
-  </div>
-  <div class="main-content" [class.expanded]="!sidebarOpen">
-    <router-outlet></router-outlet>
-  </div>
-</div> -->
 
 <div class="app-container">
-  <!-- Background Image -->
  
-
-  <!-- Sidebar -->
   <div class="sidebar" [class.collapsed]="!sidebarOpen">
     <div class="sidebar-header">
       @if (sidebarOpen) {
@@ -130,8 +60,9 @@
       </ul>
     </nav>
   </div>
+  
   <div class="image1"></div>
-  <!-- Main Content Area -->
+
   <div class="main-content" [class.expanded]="!sidebarOpen">
     <router-outlet></router-outlet>
   </div>
