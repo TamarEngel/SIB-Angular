@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         this.authService.saveToken(response.token);
         this.showNotification('Login successful! Welcome back.', 'success');
-        // this.router.navigate(['/home2']);
+        this.router.navigate(['/home2']);
       },
       error: (e) => {
         this.showNotification(e.error.message || 'Something went wrong. Please try again.', 'error');
